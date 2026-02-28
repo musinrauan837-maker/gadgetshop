@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Товар — GadgetShop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__row">
+      <div class="brand">
+        <div class="brand__logo">GS</div>
+        <div class="brand__text">
+          <div class="brand__name">GadgetShop</div>
+          <div class="brand__tag">страница товара</div>
+        </div>
+      </div>
+
+      <div class="header__actions">
+        <button id="themeBtn" class="btn btn--ghost" type="button">Тема</button>
+        <a class="btn btn--primary" href="index.html">Каталог</a>
+        <button class="btn btn--ghost" type="button">
+          Корзина <span id="cartCount" class="badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main">
+    <div id="notFound" class="empty" style="display:none">
+      Товар не найден. Проверь ссылку.
+      <div style="margin-top:12px">
+        <button id="backBtn" class="btn btn--primary" type="button">Назад в каталог</button>
+      </div>
+    </div>
+
+    <section class="productPage">
+      <div class="productMedia">
+        <img id="pImage" class="productImage" src="" alt="" />
+      </div>
+
+      <div class="productInfo">
+        <div class="productTop">
+          <h1 id="pTitle" class="productTitle"></h1>
+          <div id="pMeta" class="productMeta"></div>
+        </div>
+
+        <div class="productPriceRow">
+          <div class="productPrice" id="pPrice"></div>
+          <div class="small">Цена (демо)</div>
+        </div>
+
+        <p id="pDesc" class="productDesc"></p>
+
+        <div class="productActions">
+          <button id="pAddBtn" class="btn btn--primary" type="button">Добавить в корзину</button>
+          <a class="btn btn--ghost" href="index.html">Назад</a>
+        </div>
+
+        <div class="productSpecs">
+          <div class="label">Характеристики</div>
+          <div id="pSpecs" class="specGrid"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__row">
+      <div>© GadgetShop — учебный проект</div>
+      <div class="muted">product.html</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

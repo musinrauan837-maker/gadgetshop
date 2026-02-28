@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Админка — GadgetShop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__row">
+      <div class="brand">
+        <div class="brand__logo">GS</div>
+        <div class="brand__text">
+          <div class="brand__name">GadgetShop</div>
+          <div class="brand__tag">админ-панель</div>
+        </div>
+      </div>
+
+      <div class="header__actions header__actions--apple">
+        <a href="index.html" class="btn btn--ghost btn--icon btn--appleIcon" aria-label="Каталог">
+          <span class="icon" aria-hidden="true">🏠</span>
+        </a>
+
+        <div class="langSwitch" aria-label="Язык">
+          <button class="langBtn" type="button" data-lang="ru">RU</button>
+          <button class="langBtn" type="button" data-lang="kz">KZ</button>
+        </div>
+
+        <button id="themeBtn" class="btn btn--ghost btn--icon btn--appleIcon" type="button" aria-label="Тема">
+          <span class="icon" aria-hidden="true">☀️</span>
+        </button>
+
+        <button id="logoutBtn" class="btn btn--ghost btn--icon btn--appleIcon" type="button" aria-label="Выход">
+          <span class="icon" aria-hidden="true">🚪</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main">
+
+    <div id="loginBox" class="loginBox">
+      <div class="loginCard">
+        <div class="adminTitle">Вход в админку</div>
+        <div class="label">Логин</div>
+        <input id="loginUser" class="input" type="text" placeholder="admin" />
+        <div class="label">Пароль</div>
+        <input id="loginPass" class="input" type="password" placeholder="1234" />
+        <button id="loginBtn" class="btn btn--primary btn--full" type="button">Войти</button>
+        <div id="loginMsg" class="hint"></div>
+        <div class="hint">Демо: логин admin / пароль 1234</div>
+      </div>
+    </div>
+
+    <div id="adminBox" style="display:none">
+
+      <div class="adminTopRow">
+        <div>
+          <div class="adminTitle">Товары</div>
+          <div class="adminTitle2">Добавляй/редактируй товары. Изображения лежат в папке img/</div>
+        </div>
+        <div class="adminBtns">
+          <button id="seedBtn" class="btn btn--ghost" type="button">Сбросить к дефолту</button>
+          <button id="resetBtn" class="btn btn--ghost" type="button">Очистить форму</button>
+        </div>
+      </div>
+
+      <div class="adminGrid">
+        <div class="adminPanel">
+          <div class="adminTitle">Форма товара</div>
+
+          <div class="adminForm">
+            <div class="adminRow">
+              <div>
+                <div class="label">ID (например p11)</div>
+                <input id="aId" class="input" type="text" placeholder="p11" />
+              </div>
+              <div>
+                <div class="label">Категория</div>
+                <select id="aCategory" class="input">
+                  <option value="phone">Телефоны</option>
+                  <option value="audio">Аудио</option>
+                  <option value="watch">Часы</option>
+                  <option value="accessory">Аксессуары</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <div class="label">Название</div>
+              <input id="aName" class="input" type="text" placeholder="Название товара" />
+            </div>
+
+            <div class="adminRow">
+              <div>
+                <div class="label">Цена</div>
+                <input id="aPrice" class="input" type="number" min="1" step="1" placeholder="10000" />
+              </div>
+              <div>
+                <div class="label">Рейтинг (0–5)</div>
+                <input id="aRating" class="input" type="number" min="0" max="5" step="0.1" placeholder="4.7" />
+              </div>
+            </div>
+
+            <div class="adminRow">
+              <div>
+                <div class="label">Популярность</div>
+                <input id="aPopular" class="input" type="number" min="0" step="1" placeholder="80" />
+              </div>
+              <div>
+                <div class="label">Картинка (например img/x.jpg)</div>
+                <input id="aImage" class="input" type="text" placeholder="img/iphone15.jpg" />
+              </div>
+            </div>
+
+            <div>
+              <div class="label">Описание</div>
+              <textarea id="aDesc" class="input" rows="3" placeholder="Короткое описание"></textarea>
+            </div>
+
+            <div>
+              <div class="label">Характеристики (каждая строка: ключ:значение)</div>
+              <textarea id="aSpecs" class="input" rows="5" placeholder="Память:256GB&#10;Экран:6.1&quot;"></textarea>
+            </div>
+
+            <div class="adminBtns">
+              <button id="saveBtn" class="btn btn--primary" type="button">Сохранить</button>
+            </div>
+
+            <div id="adminMsg" class="hint"></div>
+          </div>
+        </div>
+
+        <div class="adminPanel">
+          <div class="adminTitle">Список товаров</div>
+          <div id="adminList" class="adminList"></div>
+        </div>
+      </div>
+
+      <div class="adminGrid">
+        <div class="adminPanel">
+          <div class="adminTitle">Пользователи (кто зарегистрировался)</div>
+          <div class="adminTitle2">Демо-аккаунты из браузера (LocalStorage)</div>
+          <div id="usersList" class="adminList"></div>
+          <div class="adminBtns">
+            <button id="clearUsersBtn" class="btn btn--danger" type="button">Удалить всех пользователей</button>
+          </div>
+          <div id="usersMsg" class="hint"></div>
+        </div>
+
+        <div class="adminPanel">
+          <div class="adminTitle">Подсказка</div>
+          <div class="hint">
+            Если хочешь “как по-взрослому”, следующий шаг — подключить backend (Node/Express) + базу данных.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__row">
+      <div>© <span id="year"></span> GadgetShop — учебный проект</div>
+      <div class="muted">Админ-панель</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

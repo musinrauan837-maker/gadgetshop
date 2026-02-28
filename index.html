@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GadgetShop — магазин гаджетов</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__row">
+      <div class="brand">
+        <div class="brand__logo">
+          <img src="img/logo.png" alt="GadgetShop Logo">
+        </div>
+        <div class="brand__text">
+          <div class="brand__name">GadgetShop</div>
+          <div class="brand__tag">телефоны • аксессуары • гаджеты</div>
+        </div>
+      </div>
+
+      <div class="header__actions header__actions--apple">
+
+        <a class="storeLocationBadge"
+           href="https://maps.google.com/?q=Astana%2C%20Kazakhstan"
+           target="_blank"
+           rel="noopener">
+          <span class="storeLocationBadge__icon">📍</span>
+          <span class="storeLocationBadge__text">Астана</span>
+          <span class="storeLocationBadge__dot"></span>
+          <span class="storeLocationBadge__meta">Открыто</span>
+        </a>
+
+        <button id="themeBtn" class="btn btn--ghost btn--icon btn--appleIcon" type="button">
+          <span class="icon">☀️</span>
+        </button>
+
+        <a href="admin.html" class="btn btn--ghost btn--icon btn--appleIcon">
+          <span class="icon">🛠️</span>
+        </a>
+
+        <button id="cartBtn" class="btn btn--primary btn--icon btn--appleIcon btn--cart" type="button">
+          <span class="icon">🛒</span>
+          <span id="cartCount" class="badge">0</span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <main class="container main">
+    <section class="controls">
+      <div class="control">
+        <label class="label" for="searchInput">Поиск</label>
+        <input id="searchInput" class="input" type="text"
+          placeholder="Например: iPhone, Samsung, наушники..." />
+      </div>
+
+      <div class="control">
+        <label class="label" for="categorySelect">Категория</label>
+        <select id="categorySelect" class="input">
+          <option value="all">Все</option>
+          <option value="phone">Телефоны</option>
+          <option value="audio">Аудио</option>
+          <option value="watch">Часы</option>
+          <option value="accessory">Аксессуары</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label class="label" for="sortSelect">Сортировка</label>
+        <select id="sortSelect" class="input">
+          <option value="popular">Популярные</option>
+          <option value="priceAsc">Цена: по возрастанию</option>
+          <option value="priceDesc">Цена: по убыванию</option>
+          <option value="ratingDesc">Рейтинг: высокий</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label class="label" for="maxPrice">Макс. цена (₸)</label>
+        <input id="maxPrice" class="input" type="number" min="0" step="1000" />
+      </div>
+
+      <div class="control control--wide">
+        <div class="label">Быстрые фильтры</div>
+        <div id="chips" class="chips"></div>
+      </div>
+    </section>
+
+    <section class="grid" id="productGrid" aria-live="polite"></section>
+  </main>
+
+  <div class="modal" id="cartModal" aria-hidden="true">
+    <div class="modal__overlay" id="cartOverlay"></div>
+    <div class="modal__panel">
+      <div class="modal__header">
+        <div class="modal__title">🛒 Корзина</div>
+        <button id="closeCartBtn" class="btn btn--ghost" type="button">Закрыть</button>
+      </div>
+
+      <div class="modal__body">
+        <div id="cartItems" class="cartList"></div>
+
+        <div class="summary">
+          <div class="summary__row">
+            <div>Товары</div>
+            <div id="cartSubtotal">0 ₸</div>
+          </div>
+          <div class="summary__row">
+            <div>Доставка</div>
+            <div id="cartShipping">0 ₸</div>
+          </div>
+          <div class="summary__row summary__row--total">
+            <div>Итого</div>
+            <div id="cartTotal">0 ₸</div>
+          </div>
+        </div>
+
+        <div class="checkout">
+          <div class="label">Оформление (демо)</div>
+          <div class="checkout__row">
+            <input id="nameInput" class="input" type="text" placeholder="Имя" />
+            <input id="phoneInput" class="input" type="text" placeholder="Телефон" />
+          </div>
+          <textarea id="addressInput" class="input" rows="3"
+            placeholder="Адрес доставки"></textarea>
+          <button id="checkoutBtn" class="btn btn--primary btn--full" type="button">
+            Оформить заказ
+          </button>
+          <div id="checkoutMsg" class="hint"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== ОБНОВЛЁННЫЙ FOOTER ====== -->
+
+  <footer class="footerPro">
+    <div class="container">
+
+      <div class="footerTop">
+
+        <div class="footerBrand">
+          <div class="footerLogo">GS</div>
+          <div>
+            <div class="footerName">GadgetShop</div>
+            <div class="footerTag">Учебный проект • HTML • CSS • JS</div>
+          </div>
+        </div>
+
+        <div class="footerGrid">
+
+          <div class="footerCol">
+            <div class="footerTitle">Покупателям</div>
+            <a class="footerLink" href="#">Доставка и оплата</a>
+            <a class="footerLink" href="#">Возврат и гарантия</a>
+            <a class="footerLink" href="#">FAQ</a>
+          </div>
+
+          <div class="footerCol">
+            <div class="footerTitle">Каталог</div>
+            <a class="footerLink" href="#" data-footer-filter="phone">Телефоны</a>
+            <a class="footerLink" href="#" data-footer-filter="audio">Аудио</a>
+            <a class="footerLink" href="#" data-footer-filter="watch">Часы</a>
+            <a class="footerLink" href="#" data-footer-filter="accessory">Аксессуары</a>
+          </div>
+
+          <div class="footerCol">
+            <div class="footerTitle">Контакты</div>
+
+            <div class="footerText">
+              📞 <span class="footerMuted">87756318357</span>
+            </div>
+
+            <div class="footerText">
+              ✉️ <span class="footerMuted">support@musinrauan837</span>
+            </div>
+
+            <div class="footerText">
+              🕘 <span class="footerMuted">Пн–Вс: 10:00–22:00</span>
+            </div>
+
+            <div class="footerText">
+              📍 <span class="footerMuted">Астана, Казахстан</span>
+            </div>
+
+            <a class="footerMapBtn"
+               href="https://maps.google.com/?q=Astana%2C%20Kazakhstan"
+               target="_blank"
+               rel="noopener">
+              Открыть в Google Maps →
+            </a>
+          </div>
+
+          <div class="footerCol">
+            <div class="footerTitle">Мы в соцсетях</div>
+
+            <div class="socialRow">
+              <a class="socialPill"
+                 href="https://www.instagram.com/maratovi1ch?igsh=MWp0MmR6cXN3d2d0Yw%3D%3D&utm_source=qr"
+                 target="_blank"
+                 rel="noopener">
+                 📸 Instagram
+              </a>
+            </div>
+
+            <div class="footerTitle footerTitle--small">Оплата</div>
+            <div class="payRow">
+              <span class="payChip">💳 Visa</span>
+              <span class="payChip">💳 MasterCard</span>
+              <span class="payChip"> Pay</span>
+              <span class="payChip">Kaspi</span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="footerBottom">
+        <div>© <span id="year"></span> GadgetShop</div>
+        <div class="footerMuted">Сделано в стиле glassmorphism</div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+
+  <script>
+    (function(){
+      const y = document.getElementById("year");
+      if(y) y.textContent = new Date().getFullYear();
+
+      document.querySelectorAll("[data-footer-filter]").forEach(a=>{
+        a.addEventListener("click", (e)=>{
+          e.preventDefault();
+          const v = a.getAttribute("data-footer-filter");
+          const sel = document.getElementById("categorySelect");
+          if(sel && v){
+            sel.value = v;
+            sel.dispatchEvent(new Event("change"));
+            window.scrollTo({top: 0, behavior: "smooth"});
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
